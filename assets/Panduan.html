@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi - IT Helpdesk BVT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style kustom untuk konten slide */
+        .slide-content {
+            /* Mencegah pergeseran tata letak saat konten berubah */
+            min-height: 0;
+            max-height: 100%;
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        body {
+            background-color: #f3f4f6;
+        }
+        
+        main {
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .slide-container-wrapper {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        
+        .slide-content {
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-footer {
+            flex-shrink: 0;
+        }
+        
+        /* Logo di setiap slide */
+        .slide-logo {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100 !important;
+            max-height: 40px;
+            width: auto;
+            pointer-events: none; /* Prevent logo from blocking clicks */
+        }
+        
+        .slide-content {
+            position: relative;
+            max-height: 100%;
+            overflow-y: auto;
+            padding-top: 3rem !important; /* Space for logo (40px logo + padding) */
+        }
+        
+        /* Ensure content fits without scroll */
+        .slide-content > * {
+            max-width: 100%;
+        }
+        
+        @media (max-width: 640px) {
+            .slide-logo {
+                max-height: 30px;
+                top: 0.5rem;
+                left: 0.5rem;
+            }
+            
+            .slide-content {
+                padding: 0.75rem !important;
+                padding-top: 2.25rem !important; /* Space for smaller logo on mobile */
+            }
+            
+            .slide-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.125rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide-content p,
+            .slide-content ul {
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .slide-content {
+                padding: 1rem !important;
+                padding-top: 3rem !important; /* Space for logo */
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .slide-content {
+                padding: 1.5rem !important;
+                padding-top: 3rem !important; /* Space for logo */
+            }
+        }
+        
+        .slide-content h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive: 24px - 40px */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #111827; /* gray-900 */
+            line-height: 1.2;
+        }
+        .slide-content h2 {
+            font-size: clamp(1.25rem, 3.5vw, 2rem); /* Responsive: 20px - 32px */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1f2937; /* gray-800 */
+            line-height: 1.3;
+        }
+        .slide-content h3 {
+            font-size: clamp(1.125rem, 3vw, 1.5rem); /* Responsive: 18px - 24px */
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #374151; /* gray-700 */
+            line-height: 1.4;
+        }
+        .slide-content p {
+            font-size: clamp(0.875rem, 2.5vw, 1rem); /* Responsive: 14px - 16px */
+            margin-bottom: 0.5rem;
+            color: #374151; /* gray-700 */
+            line-height: 1.5;
+        }
+        .slide-content ul {
+            font-size: clamp(0.875rem, 2.5vw, 1rem); /* Responsive: 14px - 16px */
+            list-style-position: outside;
+            list-style-type: disc;
+            margin-left: 1rem;
+            margin-bottom: 0.75rem;
+            color: #374151; /* gray-700 */
+            line-height: 1.5;
+        }
+        .slide-content li {
+            margin-bottom: 0.25rem;
+        }
+        .slide-content code {
+            font-family: monospace;
+            background-color: #f3f4f6; /* gray-100 */
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem); /* Responsive: 12px - 14px */
+        }
+        .slide-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.75rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem); /* Responsive: 12px - 14px */
+        }
+        .slide-content th, .slide-content td {
+            border: 1px solid #d1d5db; /* gray-300 */
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .slide-content th {
+            background-color: #f9fafb; /* gray-50 */
+            font-weight: 600;
+        }
+        
+        /* Reduce padding and margin for boxes inside slides */
+        .slide-content .bg-red-100,
+        .slide-content .bg-green-100,
+        .slide-content .bg-yellow-100,
+        .slide-content .bg-blue-50,
+        .slide-content .bg-blue-100,
+        .slide-content .bg-indigo-50 {
+            padding: 0.5rem !important;
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .slide-content .space-y-6 > * {
+            margin-top: 0.75rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .slide-content .space-y-4 > * {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .slide-content .space-y-3 > * {
+            margin-top: 0.375rem !important;
+            margin-bottom: 0.375rem !important;
+        }
+        
+        .slide-content .mt-6,
+        .slide-content .mt-8 {
+            margin-top: 0.75rem !important;
+        }
+        
+        .slide-content .mb-2,
+        .slide-content .mb-4,
+        .slide-content .mb-6,
+        .slide-content .mb-8 {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .slide-content .p-4,
+        .slide-content .p-6 {
+            padding: 0.5rem !important;
+        }
+        
+        /* Reduce font sizes for specific text classes */
+        .slide-content .text-5xl {
+            font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+        }
+        
+        .slide-content .text-3xl {
+            font-size: clamp(1.25rem, 4vw, 2rem) !important;
+        }
+        
+        .slide-content .text-xl {
+            font-size: clamp(1rem, 3vw, 1.25rem) !important;
+        }
+        
+        .slide-content .text-lg {
+            font-size: clamp(0.875rem, 2.5vw, 1rem) !important;
+        }
+        
+        .slide-content .text-base {
+            font-size: clamp(0.75rem, 2vw, 0.875rem) !important;
+        }
+        
+        /* Mencegah tombol menjadi terlalu kecil di ponsel */
+        .nav-button {
+            min-width: 100px;
+        }
+        
+        /* Logo styling di footer */
+        .nav-footer img {
+            max-height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 640px) {
+            .nav-footer img {
+                max-height: 24px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col h-full">
+
+    <!-- Slide Container -->
+    <main class="flex-grow flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white w-full max-w-5xl shadow-xl rounded-lg overflow-hidden slide-container-wrapper">
+            <!-- Language Toggle Button -->
+            <div class="bg-indigo-50 border-b border-indigo-200 px-4 py-2 flex justify-end">
+                <button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-sm">
+                    <i class="fas fa-language"></i>
+                    <span id="lang-text">English</span>
+                </button>
+            </div>
+            
+            <!-- Konten Slide (dinamis) -->
+            <div id="slide-container" class="slide-content p-3 sm:p-4 md:p-6 slide-content-wrapper">
+                <!-- Konten slide akan dimuat di sini oleh JS -->
+            </div>
+
+            <!-- Navigasi -->
+            <footer class="bg-gray-50 border-t border-gray-200 px-3 py-2 sm:px-4 sm:py-3 nav-footer">
+                <div class="flex justify-between items-center">
+                    <button id="prev-btn" class="nav-button bg-gray-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150">
+                        <span id="prev-text">Sebelumnya</span>
+                    </button>
+                    
+                    <span id="slide-counter" class="text-sm font-medium text-gray-600">
+                        Slide 1 / 16
+                    </span>
+                    
+                    <button id="next-btn" class="nav-button bg-blue-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150">
+                        <span id="next-text">Berikutnya</span>
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Language management
+        let currentLang = localStorage.getItem('panduan-lang') || 'id'; // Default: Indonesian
+        
+        // Language texts
+        const langTexts = {
+            id: {
+                prev: 'Sebelumnya',
+                next: 'Berikutnya',
+                langToggle: 'English',
+                slide: 'Slide'
+            },
+            en: {
+                prev: 'Previous',
+                next: 'Next',
+                langToggle: 'Bahasa Indonesia',
+                slide: 'Slide'
+            }
+        };
+        
+        // Data untuk slide dalam Bahasa Indonesia
+        const slidesID = [
+            // Slide 1: Judul
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <div class="text-center flex flex-col justify-center items-center h-full">
+                    <h2 class="text-3xl font-semibold text-gray-600 mb-4">PANDUAN LENGKAP</h2>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-8">SISTEM IT HELPDESK</h1>
+                    <h3 class="text-2xl font-medium text-gray-700">BAMBOO VILLAGE TRUST</h3>
+                </div>
+            `,
+            // Slide 2: Kenapa Kita Menggunakan Sistem Helpdesk?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Kenapa Kita Menggunakan Sistem Helpdesk?</h2>
+                <p>Sistem tiket terpusat untuk meningkatkan kualitas layanan IT.</p>
+                <p class="font-bold mt-6 mb-2">Keuntungan untuk Anda:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><span class="font-semibold">Terlacak:</span> Tidak ada lagi permintaan yang terlewat atau terlupakan.</li>
+                    <li><span class="font-semibold">Efisien:</span> Permintaan Anda langsung diarahkan ke tim yang tepat.</li>
+                    <li><span class="font-semibold">Transparan:</span> Anda bisa memantau status pengerjaan tiket Anda kapan saja.</li>
+                </ul>
+                <p class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 font-semibold">
+                    ! PENTING: Seluruh permintaan bantuan, laporan masalah, dan pertanyaan terkait IT <strong>wajib</strong> diajukan melalui sistem IT Helpdesk.
+                </p>
+            `,
+            // Slide 3: Kapan Saya Harus Membuat Tiket?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Kapan Saya Harus Membuat Tiket?</h2>
+                <p>Segera buat tiket jika Anda mengalami:</p>
+                <ul class="list-disc pl-6 space-y-3 mt-4">
+                    <li>Laptop/PC error, lambat, atau mati total.</li>
+                    <li>Tidak bisa terhubung ke internet (Wi-Fi) atau jaringan kantor.</li>
+                    <li>Error saat menggunakan aplikasi internal (SPPE, sistem HR, dll.).</li>
+                    <li>Lupa password atau tidak bisa login.</li>
+                    <li>Printer, mouse, atau keyboard tidak berfungsi.</li>
+                    <li>Permintaan instalasi software baru.</li>
+                    <li>Menerima email mencurigakan (phishing) atau terkena virus.</li>
+                </ul>
+            `,
+            // Slide 4: Cara Membuat Tiket (Langkah 1-3)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Cara Membuat Tiket (Langkah 1-3)</h2>
+                <div class="space-y-6 mt-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Langkah 1: Akses Portal Helpdesk</h3>
+                        <p>Buka browser Anda dan akses:</p>
+                        <code class="text-base">http://localhost/helpdesk_system/</code>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Langkah 2: Buat Tiket Baru</h3>
+                        <p>Klik pada tombol <strong>"Create New Support Ticket"</strong> atau "Buat Tiket Baru".</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Langkah 3: Lengkapi Formulir</h3>
+                        <p>Isi formulir yang tersedia dengan informasi sedetail mungkin.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 5: Mengisi Formulir Tiket (Penting!)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Mengisi Formulir Tiket (Penting!)</h2>
+                <ul class="list-none pl-0 space-y-4 mt-6">
+                    <li>
+                        <strong class="text-gray-800">Issue Category (Kategori Masalah):</strong>
+                        <p class="text-gray-600 ml-4">Pilih kategori yang paling sesuai.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Issue Details (Detail Masalah):</strong>
+                        <p class="text-gray-600 ml-4">Jelaskan masalah sedetail mungkin (Apa, Pesan error, Kapan, Sudah coba apa).</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Priority (Prioritas):</strong>
+                        <p class="text-gray-600 ml-4">Pilih tingkat prioritas berdasarkan dampak ke pekerjaan Anda.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Attachments (Lampiran):</strong>
+                        <p class="text-gray-600 ml-4"><span class="font-bold text-red-600">SANGAT DISARANKAN.</span> Lampirkan screenshot atau foto dari pesan error.</p>
+                    </li>
+                </ul>
+            `,
+            // Slide 6: Contoh Pengisian "Issue Details"
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Contoh Pengisian "Issue Details"</h2>
+                <div class="mt-6">
+                    <div class="mb-6 p-4 bg-red-100 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800">Contoh yang Kurang Tepat:</h3>
+                        <p class="text-red-700">"Internet mati."</p>
+                    </div>
+                    
+                    <div class="p-4 bg-green-100 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800">Contoh yang Tepat:</h3>
+                        <p class="text-green-700">"Saya tidak bisa terhubung ke Wi-Fi 'BVT-Office' sejak jam 10 pagi ini. Laptop saya terus 'disconnect/connect'. Saya sudah coba restart laptop, tapi masalah masih ada. Staf lain di ruangan saya sepertinya tidak ada masalah."</p>
+                    </div>
+                </div>
+                <p class="mt-8 text-center font-semibold text-lg">Semakin lengkap informasi Anda, semakin cepat Tim IT dapat menyelesaikan masalah Anda.</p>
+            `,
+            // Slide 7: Memahami Kategori Masalah
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Memahami Kategori Masalah</h2>
+                <ul class="list-none pl-0 space-y-4 mt-6">
+                    <li>
+                        <strong class="text-gray-800">Jaringan & Keamanan (Network & Security)</strong>
+                        <p class="text-gray-600 ml-4">Masalah koneksi internet, Wi-Fi lambat, VPN, firewall, email phishing, virus.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Aplikasi & Sistem Internal (In-house Apps & Systems)</strong>
+                        <p class="text-gray-600 ml-4">Error (bug), permintaan fitur baru, atau masalah pada sistem internal (SPPE, sistem HR, dll).</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Perangkat Keras (Hardware)</strong>
+                        <p class="text-gray-600 ml-4">Laptop/PC mati, monitor blank, mouse/keyboard rusak, printer error.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Perangkat Lunak & Akun (General Software & Accounts)</strong>
+                        <p class="text-gray-600 ml-4">Masalah MS Office, browser, lupa password, tidak bisa login, permintaan instalasi software.</p>
+                    </li>
+                    <li>
+                        <strong class="text-indigo-800 bg-indigo-50 p-2 rounded">Pengajuan Pembuatan atau Perubahan Aplikasi Sistem</strong>
+                        <p class="text-gray-600 ml-4">Permintaan pembuatan sistem/aplikasi baru atau perubahan pada sistem yang sudah ada. <span class="font-semibold text-indigo-600">Akan muncul form SDLC khusus.</span></p>
+                    </li>
+                </ul>
+            `,
+            // Slide 7.5: Kategori SDLC - Pengajuan Sistem Baru
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Pengajuan Pembuatan/Perubahan Aplikasi Sistem</h2>
+                <div class="mt-6 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-lg">
+                    <p class="text-lg font-semibold text-indigo-900 mb-4">Kapan menggunakan kategori ini?</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Anda membutuhkan <strong>aplikasi atau sistem baru</strong> untuk mendukung pekerjaan</li>
+                        <li>Anda ingin <strong>mengubah atau menambah fitur</strong> pada sistem yang sudah ada</li>
+                        <li>Anda memiliki <strong>ide untuk otomatisasi</strong> proses kerja</li>
+                        <li>Anda membutuhkan <strong>integrasi antar sistem</strong></li>
+                    </ul>
+                </div>
+                <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg">
+                    <p class="font-semibold text-yellow-800">⚠️ PENTING:</p>
+                    <p class="text-yellow-700 mt-2">Ketika Anda memilih kategori ini, akan muncul <strong>Formulir Permintaan Sistem / Perubahan (SDLC Form)</strong> yang harus diisi dengan lengkap.</p>
+                </div>
+            `,
+            // Slide 8: Mengisi Form SDLC - Bagian A
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Mengisi Form SDLC - Bagian A: Informasi Umum</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">1. Judul Permintaan</h3>
+                        <p class="text-gray-700">Beri judul yang jelas dan deskriptif. Contoh: "Sistem Manajemen Inventaris" atau "Penambahan Fitur Export Laporan di SPPE"</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">2. Unit/Departemen Pemohon</h3>
+                        <p class="text-gray-700">Isi dengan nama unit atau departemen Anda (contoh: HR, Finance, Program, dll.)</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">3. Prioritas yang Diusulkan</h3>
+                        <p class="text-gray-700">Pilih prioritas berdasarkan urgensi kebutuhan sistem ini untuk operasional kerja.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 9: Mengisi Form SDLC - Bagian B
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Mengisi Form SDLC - Bagian B: Deskripsi Kebutuhan</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Latar Belakang</h3>
+                        <p class="text-gray-700 text-sm">Jelaskan situasi atau kondisi saat ini yang memicu kebutuhan sistem ini.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Pernyataan Masalah</h3>
+                        <p class="text-gray-700 text-sm">Apa masalah yang ingin diselesaikan dengan sistem ini? Jelaskan dengan spesifik.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Dampak (Waktu, Transparansi, Biaya, Akuntabilitas)</h3>
+                        <p class="text-gray-700 text-sm">Jelaskan dampak positif yang diharapkan dari sistem ini pada aspek-aspek tersebut.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center font-semibold text-indigo-600">💡 Tips: Semakin detail penjelasan Anda, semakin mudah Tim IT memahami kebutuhan Anda!</p>
+            `,
+            // Slide 10: Mengisi Form SDLC - Bagian C
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Mengisi Form SDLC - Bagian C: Solusi yang Diusulkan</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Tujuan Utama</h3>
+                        <p class="text-gray-700 text-sm">Apa tujuan utama dari sistem yang Anda usulkan? Apa yang ingin dicapai?</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Manfaat (1, 2, 3)</h3>
+                        <p class="text-gray-700 text-sm">Sebutkan minimal 2-3 manfaat utama yang akan didapat dengan adanya sistem ini.</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Pengguna Utama Sistem</h3>
+                        <p class="text-gray-700 text-sm">Klik tombol "+ Tambah Role" untuk menambahkan role/pengguna. Contoh: Admin HR, Staff Finance, Manager Program, dll.</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Fitur Kunci</h3>
+                        <p class="text-gray-700 text-sm">Klik tombol "+ Tambah Fitur" untuk menambahkan fitur-fitur utama yang dibutuhkan. Contoh: Input Data, Generate Laporan, Export Excel, dll.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 11: Tips Mengisi Form SDLC
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Tips Mengisi Form SDLC dengan Baik</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="p-4 bg-green-100 rounded-lg border border-green-300">
+                        <h3 class="font-bold text-green-800 mb-2">✅ DO (Lakukan):</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-green-700">
+                            <li>Isi semua field yang wajib diisi</li>
+                            <li>Gunakan bahasa yang jelas dan mudah dipahami</li>
+                            <li>Berikan contoh konkret jika memungkinkan</li>
+                            <li>Tambahkan role dan fitur yang relevan</li>
+                            <li>Review kembali sebelum submit</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-red-100 rounded-lg border border-red-300">
+                        <h3 class="font-bold text-red-800 mb-2">❌ DON'T (Jangan):</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-red-700">
+                            <li>Meninggalkan field kosong</li>
+                            <li>Menggunakan singkatan yang tidak jelas</li>
+                            <li>Menulis terlalu singkat tanpa penjelasan</li>
+                            <li>Menambahkan role/fitur yang tidak relevan</li>
+                            <li>Submit tanpa membaca ulang</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-indigo-100 border-l-4 border-indigo-500 rounded-lg">
+                    <p class="font-semibold text-indigo-800">📋 Setelah Submit:</p>
+                    <p class="text-indigo-700 mt-2">Tiket Anda akan otomatis di-assign ke Tim Aplikasi Sistem (awan). Form SDLC yang sudah diisi dapat dilihat dan di-download oleh admin untuk proses pengembangan selanjutnya.</p>
+                </div>
+            `,
+            // Slide 12: Memahami Prioritas (Gunakan dengan Bijak)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Memahami Prioritas (Gunakan dengan Bijak)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="p-4 bg-red-100 rounded-lg border border-red-300">
+                        <h3 class="font-bold text-red-800">KRITIS (Critical):</h3>
+                        <p class="text-red-700">Pekerjaan terhenti total & berdampak pada <strong>banyak orang</strong>.<br><em>Contoh: Sistem SPPE down, Internet kantor mati total.</em></p>
+                    </div>
+                    <div class="p-4 bg-orange-100 rounded-lg border border-orange-300">
+                        <h3 class="font-bold text-orange-800">TINGGI (High):</h3>
+                        <p class="text-orange-700">Pekerjaan <strong>satu orang</strong> terhenti total & tidak ada cara lain.<br><em>Contoh: Laptop mati total, Tidak bisa login.</em></p>
+                    </div>
+                    <div class="p-4 bg-yellow-100 rounded-lg border border-yellow-300">
+                        <h3 class="font-bold text-yellow-800">SEDANG (Medium):</h3>
+                        <p class="text-yellow-700">Pekerjaan terganggu, tapi masih bisa bekerja atau ada cara lain.<br><em>Contoh: Printer tidak berfungsi, Satu fitur aplikasi error.</em></p>
+                    </div>
+                    <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                        <h3 class="font-bold text-blue-800">RENDAH (Low):</h3>
+                        <p class="text-blue-700">Dampak kecil atau permintaan yang tidak mendesak.<br><em>Contoh: Mouse error, Permintaan instalasi software baru.</em></p>
+                    </div>
+                </div>
+            `,
+            // Slide 13: Apa yang Terjadi Setelah Tiket Dibuat?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Apa yang Terjadi Setelah Tiket Dibuat?</h2>
+                <ol class="list-decimal pl-6 space-y-4 mt-6 text-lg">
+                    <li>
+                        <strong>Konfirmasi:</strong> Anda akan menerima email notifikasi otomatis (lengkap dengan nomor tiket).
+                    </li>
+                    <li>
+                        <strong>Analisis:</strong> Tim IT akan meninjau tiket Anda (sesuai Waktu Respon SLA).
+                    </li>
+                    <li>
+                        <strong>Komunikasi:</strong> Tim IT mungkin akan membalas di dalam tiket untuk bertanya informasi tambahan.
+                    </li>
+                    <li>
+                        <strong>Resolusi:</strong> Tim IT akan bekerja menyelesaikan masalah Anda (sesuai Waktu Resolusi SLA).
+                    </li>
+                    <li>
+                        <strong>Penutupan:</strong> Jika masalah sudah selesai, tiket akan ditutup.
+                    </li>
+                </ol>
+            `,
+            // Slide 14: Standar Waktu Layanan (SLA)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Standar Waktu Layanan (SLA)</h2>
+                <p class="italic text-gray-600">Waktu layanan dihitung berdasarkan Jam Kerja (Senin - Jumat, 09:00 - 17:00 WITA), di luar hari libur nasional.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-3 text-left">Prioritas</th>
+                                <th class="p-3 text-left">Waktu Respon Pertama</th>
+                                <th class="p-3 text-left">Waktu Resolusi (Target)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-red-600">KRITIS</td>
+                                <td class="p-3">&lt; 15 Menit</td>
+                                <td class="p-3">≤ 4 Jam Kerja</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-orange-600">TINGGI</td>
+                                <td class="p-3">&lt; 30 Menit</td>
+                                <td class="p-3">≤ 8 Jam Kerja (1 Hari)</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-yellow-600">SEDANG</td>
+                                <td class="p-3">&lt; 2 Jam Kerja</td>
+                                <td class="p-3">≤ 3 Hari Kerja</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-blue-600">RENDAH</td>
+                                <td class="p-3">&lt; 4 Jam Kerja</td>
+                                <td class="p-3">≤ 5 Hari Kerja</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            // Slide 15: Do's & Don'ts (Tips Penting!)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Do's & Don'ts (Tips Penting!)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-green-100 p-6 rounded-lg border border-green-300">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">DO (Lakukan):</h3>
+                        <ul class="list-none pl-0 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Beri detail lengkap dan screenshot di Issue Details.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Buat satu tiket untuk satu masalah.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Cek status tiket Anda di portal untuk melihat progres.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-100 p-6 rounded-lg border border-red-300">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">DON'T (Jangan Lakukan):</h3>
+                        <ul class="list-none pl-0 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Menghubungi Tim IT via WhatsApp pribadi, telepon, atau email langsung.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Menandai semua tiket sebagai "Kritis" atau "Tinggi".</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Membuat tiket duplikat untuk masalah yang sama.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            // Slide 16: Terima Kasih
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <div class="text-center flex flex-col justify-center items-center h-full">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-8">Terima kasih atas kerja sama Anda!</h1>
+                    <p class="text-2xl text-gray-700 italic mb-8">Sistem ini ada untuk membantu kami melayani Anda dengan lebih baik dan lebih cepat!</p>
+                    <button id="close-panduan-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-times mr-2"></i> Tutup Panduan
+                    </button>
+                </div>
+            `
+        ];
+
+        // Data untuk slide dalam Bahasa Inggris
+        const slidesEN = [
+            // Slide 1: Title
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <div class="text-center flex flex-col justify-center items-center h-full">
+                    <h2 class="text-3xl font-semibold text-gray-600 mb-4">COMPLETE GUIDE</h2>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-8">IT HELPDESK SYSTEM</h1>
+                    <h3 class="text-2xl font-medium text-gray-700">BAMBOO VILLAGE TRUST</h3>
+                </div>
+            `,
+            // Slide 2: Why Are We Using a Helpdesk System?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Why Are We Using a Helpdesk System?</h2>
+                <p>A centralized ticketing system to improve the quality of IT services.</p>
+                <p class="font-bold mt-6 mb-2">Benefits for You:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><span class="font-semibold">Traceable:</span> No more requests are missed or forgotten.</li>
+                    <li><span class="font-semibold">Efficient:</span> Your requests are immediately directed to the right team.</li>
+                    <li><span class="font-semibold">Transparent:</span> You can monitor the status of your ticket at any time.</li>
+                </ul>
+                <p class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 font-semibold">
+                    ! IMPORTANT: All requests for assistance, problem reports, and IT-related questions <strong>must</strong> be submitted through the IT Helpdesk system.
+                </p>
+            `,
+            // Slide 3: When Should I Create a Ticket?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>When Should I Create a Ticket?</h2>
+                <p>Create a ticket immediately if you experience:</p>
+                <ul class="list-disc pl-6 space-y-3 mt-4">
+                    <li>Laptop/PC error, slow, or dead.</li>
+                    <li>Cannot connect to the internet (Wi-Fi) or office network.</li>
+                    <li>Error when using internal applications (SPPE, HR system, etc.).</li>
+                    <li>Forgot password or unable to log in.</li>
+                    <li>Printer, mouse, or keyboard not working.</li>
+                    <li>Request for new software installation.</li>
+                    <li>Receiving a suspicious email (phishing) or infected with a virus.</li>
+                </ul>
+            `,
+            // Slide 4: How to Create a Ticket (Steps 1-3)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>How to Create a Ticket (Steps 1-3)</h2>
+                <div class="space-y-6 mt-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Step 1: Access the Helpdesk Portal</h3>
+                        <p>Open your browser and access:</p>
+                        <code class="text-base">http://localhost/helpdesk_system/</code>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Step 2: Create a New Ticket</h3>
+                        <p>Click the <strong>"Create New Support Ticket"</strong> button.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Step 3: Complete the Form</h3>
+                        <p>Fill out the available form with as much detail as possible.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 5: Filling Out the Ticket Form (Important!)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Filling Out the Ticket Form (Important!)</h2>
+                <ul class="list-none pl-0 space-y-4 mt-6">
+                    <li>
+                        <strong class="text-gray-800">Issue Category:</strong>
+                        <p class="text-gray-600 ml-4">Select the most appropriate category.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Issue Details:</strong>
+                        <p class="text-gray-600 ml-4">Describe the problem in as much detail as possible (What, Error message, When, What have you tried).</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Priority:</strong>
+                        <p class="text-gray-600 ml-4">Select the priority level based on the impact on your work.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Attachments:</strong>
+                        <p class="text-gray-600 ml-4"><span class="font-bold text-red-600">HIGHLY RECOMMENDED.</span> Attach a screenshot or photo of the error message.</p>
+                    </li>
+                </ul>
+            `,
+            // Slide 6: Example of "Issue Details" Entry
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Example of "Issue Details" Entry</h2>
+                <div class="mt-6">
+                    <div class="mb-6 p-4 bg-red-100 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800">Poor Example:</h3>
+                        <p class="text-red-700">"Internet is down."</p>
+                    </div>
+                    
+                    <div class="p-4 bg-green-100 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800">Good Example:</h3>
+                        <p class="text-green-700">"I cannot connect to the 'BVT-Office' Wi-Fi since 10 AM today. My laptop keeps 'disconnecting/connecting'. I have tried restarting the laptop, but the problem persists. Other staff in my room do not seem to have this issue."</p>
+                    </div>
+                </div>
+                <p class="mt-8 text-center font-semibold text-lg">The more complete your information, the faster the IT Team can resolve your issue.</p>
+            `,
+            // Slide 7: Understanding Issue Categories
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Understanding Issue Categories</h2>
+                <ul class="list-none pl-0 space-y-4 mt-6">
+                    <li>
+                        <strong class="text-gray-800">Network & Security</strong>
+                        <p class="text-gray-600 ml-4">Internet connection issues, slow Wi-Fi, VPN, firewall, phishing emails, viruses.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">In-house Apps & Systems</strong>
+                        <p class="text-gray-600 ml-4">Errors (bugs), new feature requests, or issues with internal systems (SPPE, HR system, etc.).</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">Hardware</strong>
+                        <p class="text-gray-600 ml-4">Laptop/PC dead, blank monitor, broken mouse/keyboard, printer error.</p>
+                    </li>
+                    <li>
+                        <strong class="text-gray-800">General Software & Accounts</strong>
+                        <p class="text-gray-600 ml-4">MS Office issues, browser problems, forgotten passwords, login failures, software installation requests.</p>
+                    </li>
+                    <li>
+                        <strong class="text-indigo-800 bg-indigo-50 p-2 rounded">Application System Development/Change Request</strong>
+                        <p class="text-gray-600 ml-4">Request for new system/application development or changes to existing systems. <span class="font-semibold text-indigo-600">A special SDLC form will appear.</span></p>
+                    </li>
+                </ul>
+            `,
+            // Slide 7.5: SDLC Category - New System Request
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Application System Development/Change Request</h2>
+                <div class="mt-6 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-lg">
+                    <p class="text-lg font-semibold text-indigo-900 mb-4">When to use this category?</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>You need a <strong>new application or system</strong> to support your work</li>
+                        <li>You want to <strong>modify or add features</strong> to existing systems</li>
+                        <li>You have an <strong>idea for automating</strong> work processes</li>
+                        <li>You need <strong>integration between systems</strong></li>
+                    </ul>
+                </div>
+                <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg">
+                    <p class="font-semibold text-yellow-800">⚠️ IMPORTANT:</p>
+                    <p class="text-yellow-700 mt-2">When you select this category, a <strong>System Request / Change Form (SDLC Form)</strong> will appear that must be filled out completely.</p>
+                </div>
+            `,
+            // Slide 8: Filling SDLC Form - Part A
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Filling SDLC Form - Part A: General Information</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">1. Request Title</h3>
+                        <p class="text-gray-700">Provide a clear and descriptive title. Example: "Inventory Management System" or "Add Export Report Feature to SPPE"</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">2. Applicant Unit/Department</h3>
+                        <p class="text-gray-700">Enter your unit or department name (example: HR, Finance, Program, etc.)</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">3. Proposed Priority</h3>
+                        <p class="text-gray-700">Select priority based on the urgency of this system for operational work.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 9: Filling SDLC Form - Part B
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Filling SDLC Form - Part B: Need Description</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Background</h3>
+                        <p class="text-gray-700 text-sm">Describe the current situation or conditions that trigger the need for this system.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Problem Statement</h3>
+                        <p class="text-gray-700 text-sm">What problem do you want to solve with this system? Explain specifically.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Impact (Time, Transparency, Cost, Accountability)</h3>
+                        <p class="text-gray-700 text-sm">Explain the positive impact expected from this system on these aspects.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center font-semibold text-indigo-600">💡 Tip: The more detailed your explanation, the easier it is for the IT Team to understand your needs!</p>
+            `,
+            // Slide 10: Filling SDLC Form - Part C
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Filling SDLC Form - Part C: Proposed Solution</h2>
+                <div class="mt-6 space-y-4">
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Main Objective</h3>
+                        <p class="text-gray-700 text-sm">What is the main objective of the system you propose? What do you want to achieve?</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Benefits (1, 2, 3)</h3>
+                        <p class="text-gray-700 text-sm">List at least 2-3 main benefits that will be gained from this system.</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Primary System Users</h3>
+                        <p class="text-gray-700 text-sm">Click the "+ Add Role" button to add roles/users. Example: Admin HR, Finance Staff, Program Manager, etc.</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-lg">
+                        <h3 class="font-bold text-purple-800 mb-2">Key Features</h3>
+                        <p class="text-gray-700 text-sm">Click the "+ Add Feature" button to add main features needed. Example: Data Input, Generate Report, Export Excel, etc.</p>
+                    </div>
+                </div>
+            `,
+            // Slide 11: Tips for Filling SDLC Form
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Tips for Filling SDLC Form Properly</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="p-4 bg-green-100 rounded-lg border border-green-300">
+                        <h3 class="font-bold text-green-800 mb-2">✅ DO:</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-green-700">
+                            <li>Fill in all required fields</li>
+                            <li>Use clear and easy-to-understand language</li>
+                            <li>Provide concrete examples if possible</li>
+                            <li>Add relevant roles and features</li>
+                            <li>Review before submitting</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-red-100 rounded-lg border border-red-300">
+                        <h3 class="font-bold text-red-800 mb-2">❌ DON'T:</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-red-700">
+                            <li>Leave fields empty</li>
+                            <li>Use unclear abbreviations</li>
+                            <li>Write too briefly without explanation</li>
+                            <li>Add irrelevant roles/features</li>
+                            <li>Submit without reviewing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-indigo-100 border-l-4 border-indigo-500 rounded-lg">
+                    <p class="font-semibold text-indigo-800">📋 After Submit:</p>
+                    <p class="text-indigo-700 mt-2">Your ticket will be automatically assigned to the Application Systems Team (awan). The completed SDLC form can be viewed and downloaded by admin for further development process.</p>
+                </div>
+            `,
+            // Slide 12: Understanding Priority (Use Wisely)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Understanding Priority (Use Wisely)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="p-4 bg-red-100 rounded-lg border border-red-300">
+                        <h3 class="font-bold text-red-800">CRITICAL:</h3>
+                        <p class="text-red-700">Work completely stopped & impacting <strong>many people</strong>.<br><em>Example: SPPE system is down, Office internet is completely out.</em></p>
+                    </div>
+                    <div class="p-4 bg-orange-100 rounded-lg border border-orange-300">
+                        <h3 class="font-bold text-orange-800">HIGH:</h3>
+                        <p class="text-orange-700"><strong>One person's</strong> work is completely stopped & no workaround exists.<br><em>Example: Laptop is dead, Unable to log in.</em></p>
+                    </div>
+                    <div class="p-4 bg-yellow-100 rounded-lg border border-yellow-300">
+                        <h3 class="font-bold text-yellow-800">MEDIUM:</h3>
+                        <p class="text-yellow-700">Work is disrupted, but can still work or there is a workaround.<br><em>Example: Printer not working, One application feature is buggy.</em></p>
+                    </div>
+                    <div class="p-4 bg-blue-100 rounded-lg border border-blue-300">
+                        <h3 class="font-bold text-blue-800">LOW:</h3>
+                        <p class="text-blue-700">Minor impact or non-urgent request.<br><em>Example: Mouse error, Request for new software installation.</em></p>
+                    </div>
+                </div>
+            `,
+            // Slide 13: What Happens After a Ticket is Created?
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>What Happens After a Ticket is Created?</h2>
+                <ol class="list-decimal pl-6 space-y-4 mt-6 text-lg">
+                    <li>
+                        <strong>Confirmation:</strong> You will receive an automatic notification email (complete with ticket number).
+                    </li>
+                    <li>
+                        <strong>Analysis:</strong> The IT Team will review your ticket (according to SLA Response Time).
+                    </li>
+                    <li>
+                        <strong>Communication:</strong> The IT Team may reply within the ticket to ask for additional information.
+                    </li>
+                    <li>
+                        <strong>Resolution:</strong> The IT Team will work to resolve your issue (according to SLA Resolution Time).
+                    </li>
+                    <li>
+                        <strong>Closure:</strong> If the issue is resolved, the ticket will be closed.
+                    </li>
+                </ol>
+            `,
+            // Slide 14: Service Level Agreement (SLA)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Service Level Agreement (SLA)</h2>
+                <p class="italic text-gray-600">Service hours are calculated based on Working Hours (Monday - Friday, 09:00 - 17:00 WITA), excluding national holidays.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-3 text-left">Priority</th>
+                                <th class="p-3 text-left">First Response Time</th>
+                                <th class="p-3 text-left">Resolution Time (Target)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-red-600">CRITICAL</td>
+                                <td class="p-3">&lt; 15 Minutes</td>
+                                <td class="p-3">≤ 4 Working Hours</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-orange-600">HIGH</td>
+                                <td class="p-3">&lt; 30 Minutes</td>
+                                <td class="p-3">≤ 8 Working Hours (1 Day)</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3 font-semibold text-yellow-600">MEDIUM</td>
+                                <td class="p-3">&lt; 2 Working Hours</td>
+                                <td class="p-3">≤ 3 Working Days</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-blue-600">LOW</td>
+                                <td class="p-3">&lt; 4 Working Hours</td>
+                                <td class="p-3">≤ 5 Working Days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            // Slide 15: Do's & Don'ts (Important Tips!)
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <h2>Do's & Don'ts (Important Tips!)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-green-100 p-6 rounded-lg border border-green-300">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">DO:</h3>
+                        <ul class="list-none pl-0 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Provide full details and screenshots in Issue Details.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Create one ticket for one issue.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span class="text-green-700">Check your ticket status on the portal to see progress.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-100 p-6 rounded-lg border border-red-300">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">DON'T:</h3>
+                        <ul class="list-none pl-0 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Contacting the IT Team via personal WhatsApp, phone, or direct email.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Marking all tickets as "Critical" or "High".</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">❌</span>
+                                <span class="text-red-700">Creating duplicate tickets for the same issue.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            // Slide 16: Thank You
+            `
+                <img src="images/Logo BVT - Primary.png" alt="BVT Logo" class="slide-logo">
+                <div class="text-center flex flex-col justify-center items-center h-full">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-8">Thank you for your cooperation!</h1>
+                    <p class="text-2xl text-gray-700 italic mb-8">This system is here to help us serve you better and faster!</p>
+                    <button id="close-panduan-btn" class="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-times mr-2"></i> Close Guide
+                    </button>
+                </div>
+            `
+        ];
+
+        // Get current slides based on language
+        function getCurrentSlides() {
+            return currentLang === 'id' ? slidesID : slidesEN;
+        }
+
+        // Initialize variables
+        let currentSlide = 0;
+        let slideContainer, slideCounter, prevButton, nextButton, langToggle, langText, prevText, nextText;
+        
+        // Wait for DOM to be ready
+        function initElements() {
+            slideContainer = document.getElementById('slide-container');
+            slideCounter = document.getElementById('slide-counter');
+            prevButton = document.getElementById('prev-btn');
+            nextButton = document.getElementById('next-btn');
+            langToggle = document.getElementById('lang-toggle');
+            langText = document.getElementById('lang-text');
+            prevText = document.getElementById('prev-text');
+            nextText = document.getElementById('next-text');
+            
+            if (!slideContainer || !slideCounter || !prevButton || !nextButton || !langToggle) {
+                console.error('Required elements not found');
+                return false;
+            }
+            return true;
+        }
+
+        // Update UI language
+        function updateUILanguage() {
+            const texts = langTexts[currentLang];
+            langText.textContent = texts.langToggle;
+            prevText.textContent = texts.prev;
+            nextText.textContent = texts.next;
+        }
+
+        // Switch language
+        function switchLanguage() {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            localStorage.setItem('panduan-lang', currentLang);
+            updateUILanguage();
+            renderSlide();
+        }
+
+        function renderSlide() {
+            const slides = getCurrentSlides();
+            // Memperbarui konten slide
+            slideContainer.innerHTML = slides[currentSlide];
+            
+            // Memperbarui penghitung slide
+            const texts = langTexts[currentLang];
+            slideCounter.textContent = `${texts.slide} ${currentSlide + 1} / ${slides.length}`;
+
+            // Mengatur status tombol
+            prevButton.disabled = (currentSlide === 0);
+            nextButton.disabled = (currentSlide === slides.length - 1);
+        }
+
+        // Initialize everything after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+        
+        function initializeApp() {
+            if (!initElements()) {
+                console.error('Failed to initialize elements');
+                return;
+            }
+            
+            // Set up event listeners
+            langToggle.addEventListener('click', switchLanguage);
+            
+            prevButton.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    renderSlide();
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                try {
+                    const slides = getCurrentSlides();
+                    if (!slides || !Array.isArray(slides)) {
+                        console.error('Slides array is not available');
+                        return;
+                    }
+                    const maxSlide = slides.length - 1;
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                        renderSlide();
+                    }
+                } catch (error) {
+                    console.error('Error in next button:', error);
+                }
+            });
+            
+            // Initialize UI
+            updateUILanguage();
+            renderSlide();
+        }
+        
+        // Fungsi untuk menutup panduan dan kembali ke dashboard
+        function closePanduan() {
+            // Cek apakah ini di dalam iframe
+            if (window.self !== window.top) {
+                // Jika di dalam iframe, kirim pesan ke parent untuk switch ke tab Dashboard
+                try {
+                    window.parent.postMessage({ action: 'closePanduan' }, '*');
+                } catch (e) {
+                    console.error('Error sending message to parent:', e);
+                }
+            } else {
+                // Jika tidak di iframe, redirect ke dashboard
+                window.location.href = '../index.php';
+            }
+        }
+        
+        // Event listener untuk tombol close menggunakan event delegation
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'close-panduan-btn' || e.target.closest('#close-panduan-btn')) {
+                e.preventDefault();
+                closePanduan();
+            }
+        });
+        
+        // Listen for messages from parent to reset slide
+        window.addEventListener('message', (event) => {
+            // Accept messages from same origin (security)
+            if (event.data && event.data.action === 'resetSlide') {
+                // Reset to first slide
+                if (typeof currentSlide !== 'undefined') {
+                    currentSlide = 0;
+                    if (typeof renderSlide === 'function') {
+                        renderSlide();
+                    }
+                }
+            }
+        });
+        
+        // Reset slide when page becomes visible (when tab is opened)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && typeof currentSlide !== 'undefined' && currentSlide !== 0) {
+                // Only reset if not already on first slide
+                currentSlide = 0;
+                if (typeof renderSlide === 'function') {
+                    renderSlide();
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

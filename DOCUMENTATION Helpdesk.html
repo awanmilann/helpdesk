@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi IT Helpdesk System - Bamboo Village Trust</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin: -20px -20px 30px -20px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            border-left: 4px solid #16a34a;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .toc h2 {
+            color: #16a34a;
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: block;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .toc a:hover {
+            background: #e9ecef;
+            color: #16a34a;
+        }
+        
+        h2 {
+            color: #16a34a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #15803d;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #166534;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        table th {
+            background: #16a34a;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        code {
+            background: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+        
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        .info-box {
+            background: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fff7e6;
+            border-left: 4px solid #faad14;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #f6ffed;
+            border-left: 4px solid #52c41a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .danger-box {
+            background: #fff1f0;
+            border-left: 4px solid #ff4d4f;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge-primary {
+            background: #16a34a;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #faad14;
+            color: white;
+        }
+        
+        .badge-danger {
+            background: #ff4d4f;
+            color: white;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .toc {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Dokumentasi Aplikasi</h1>
+            <h2>IT Helpdesk System</h2>
+            <p>Helpdesk System</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                <strong>Versi:</strong> 1.0 | 
+                <strong>Tanggal:</strong> November 2025 | 
+                <strong>URL:</strong> http://localhost/helpdesk_system
+            </p>
+        </header>
+
+        <div class="toc">
+            <h2>📋 Daftar Isi</h2>
+            <ul>
+                <li><a href="#database-info">1. Informasi Database</a></li>
+                <li><a href="#database-structure">2. Struktur Database</a></li>
+                <li><a href="#features">3. Fitur Aplikasi</a></li>
+                <li><a href="#api-endpoints">4. API Endpoints</a></li>
+                <li><a href="#file-structure">5. Struktur File</a></li>
+                <li><a href="#business-process">6. Proses Bisnis</a></li>
+                <li><a href="#configuration">7. Konfigurasi</a></li>
+                <li><a href="#setup">8. Setup & Instalasi</a></li>
+                <li><a href="#security">9. Security Best Practices</a></li>
+                <li><a href="#troubleshooting">10. Troubleshooting</a></li>
+                <li><a href="#maintenance">11. Maintenance</a></li>
+            </ul>
+        </div>
+
+        <section id="database-info">
+            <h2>1. Informasi Database</h2>
+            
+            <h3>Koneksi Database</h3>
+            <div class="info-box">
+                <strong>Host:</strong> localhost<br>
+                <strong>Database Name:</strong> u335370311_ticket<br>
+                <strong>Username:</strong> u335370311_awanmilan<br>
+                <strong>Password:</strong> MilanDarin042510$<br>
+                <strong>Charset:</strong> utf8mb4<br>
+                <strong>Collation:</strong> utf8mb4_unicode_ci
+            </div>
+
+            <h3>Konfigurasi di config.php</h3>
+            <pre><code>define('DB_HOST', 'localhost');
+define('DB_NAME', 'u335370311_ticket');
+define('DB_USER', 'u335370311_awanmilan');
+define('DB_PASS', 'MilanDarin042510$');
+define('DB_CHARSET', 'utf8mb4');</code></pre>
+
+            <h3>Timezone</h3>
+            <ul>
+                <li><strong>Timezone:</strong> Asia/Makassar (UTC+8)</li>
+                <li><strong>Format Tanggal:</strong> Y-m-d H:i:s</li>
+            </ul>
+        </section>
+
+        <section id="database-structure">
+            <h2>2. Struktur Database</h2>
+
+            <h3>2.1 Tabel users</h3>
+            <p>Menyimpan data pengguna sistem (user dan admin).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>Primary Key</td></tr>
+                    <tr><td>username</td><td>VARCHAR(100)</td><td>Username unik</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>Nama lengkap</td></tr>
+                    <tr><td>email</td><td>VARCHAR(255)</td><td>Email unik</td></tr>
+                    <tr><td>department</td><td>VARCHAR(255)</td><td>Departemen</td></tr>
+                    <tr><td>password</td><td>VARCHAR(255)</td><td>Password (bcrypt hash)</td></tr>
+                    <tr><td>role</td><td>ENUM('user', 'admin')</td><td>Role pengguna</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>Waktu dibuat</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td>Waktu diupdate</td></tr>
+                </tbody>
+            </table>
+            <div class="info-box">
+                <strong>Default Admin Users:</strong><br>
+                • Username: <code>awan</code>, Email: <code>admin@helpdesk.local</code><br>
+                • Default Password: <code>demo123</code> (harus diubah setelah instalasi)
+            </div>
+
+            <h3>2.2 Tabel tickets</h3>
+            <p>Menyimpan data tiket helpdesk.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>Primary Key</td></tr>
+                    <tr><td>ticket_number</td><td>VARCHAR(50)</td><td>Nomor tiket unik (T00001)</td></tr>
+                    <tr><td>reporter_id</td><td>INT</td><td>Foreign Key ke users.id</td></tr>
+                    <tr><td>reporter_name</td><td>VARCHAR(255)</td><td>Nama reporter</td></tr>
+                    <tr><td>reporter_dept</td><td>VARCHAR(255)</td><td>Departemen reporter</td></tr>
+                    <tr><td>category</td><td>ENUM</td><td>Network, Software, Hardware, System & Aplikasi, Pengajuan pembuatan atau perubahan aplikasi sistem</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td>Deskripsi masalah</td></tr>
+                    <tr><td>priority</td><td>ENUM</td><td>Low, Medium, High, Critical</td></tr>
+                    <tr><td>assign_to</td><td>VARCHAR(255)</td><td>Email admin yang ditugaskan</td></tr>
+                    <tr><td>status</td><td>ENUM</td><td>Open, In Progress, Done, Delayed, Revisi</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>Waktu dibuat</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 Tabel ticket_counter</h3>
+            <p>Counter untuk generate nomor tiket otomatis.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT PRIMARY KEY</td><td>Selalu 1</td></tr>
+                    <tr><td>counter</td><td>INT</td><td>Counter untuk nomor tiket</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.4 Tabel attachments</h3>
+            <p>Menyimpan file dan URL attachment tiket.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>Primary Key</td></tr>
+                    <tr><td>ticket_id</td><td>INT</td><td>Foreign Key ke tickets.id</td></tr>
+                    <tr><td>attachment_type</td><td>ENUM('file', 'url')</td><td>Tipe attachment</td></tr>
+                    <tr><td>file_name</td><td>VARCHAR(255)</td><td>Nama file</td></tr>
+                    <tr><td>file_path</td><td>VARCHAR(500)</td><td>Path file di server</td></tr>
+                    <tr><td>url</td><td>TEXT</td><td>URL (jika attachment_type = 'url')</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.5 Tabel ticket_sdlc_data</h3>
+            <p>Menyimpan data form SDLC untuk kategori "Pengajuan pembuatan atau perubahan aplikasi sistem".</p>
+            <div class="info-box">
+                <strong>Kolom Utama:</strong><br>
+                • Informasi Umum: judul_permintaan, unit_departemen, nama_pemohon, jabatan, email_pemohon, tanggal_pengajuan, prioritas_diusulkan<br>
+                • Deskripsi Kebutuhan: latar_belakang, pernyataan_masalah, dampak_waktu, dampak_transparansi, dampak_biaya, dampak_akuntabilitas<br>
+                • Solusi: tujuan_utama, manfaat_1, manfaat_2, manfaat_3, pengguna_utama_sistem, fitur_kunci<br>
+                • Persetujuan: pemohon_ttd, manajer_ttd
+            </div>
+
+            <h3>2.6 Tabel password_reset_tokens</h3>
+            <p>Menyimpan token untuk reset password.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>Primary Key</td></tr>
+                    <tr><td>user_id</td><td>INT</td><td>Foreign Key ke users.id</td></tr>
+                    <tr><td>email</td><td>VARCHAR(255)</td><td>Email user</td></tr>
+                    <tr><td>token</td><td>VARCHAR(255)</td><td>Token unik (64 karakter hex)</td></tr>
+                    <tr><td>expires_at</td><td>DATETIME</td><td>Waktu kadaluarsa (1 jam)</td></tr>
+                    <tr><td>used</td><td>TINYINT(1)</td><td>Status penggunaan (0/1)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.7 Tabel notifications</h3>
+            <p>Menyimpan notifikasi untuk pengguna.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>Primary Key</td></tr>
+                    <tr><td>user_id</td><td>INT</td><td>Foreign Key ke users.id</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td>Pesan notifikasi</td></tr>
+                    <tr><td>url</td><td>VARCHAR(500)</td><td>URL terkait (optional)</td></tr>
+                    <tr><td>is_read</td><td>TINYINT(1)</td><td>Status baca (0/1)</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>Waktu dibuat</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="features">
+            <h2>3. Fitur Aplikasi</h2>
+
+            <h3>3.1 Autentikasi & Keamanan</h3>
+            <ul>
+                <li><strong>Login:</strong> Username/email dan password, session-based</li>
+                <li><strong>Signup:</strong> Registrasi user baru dengan validasi</li>
+                <li><strong>Password Management:</strong> Change password, forgot password, reset password</li>
+            </ul>
+
+            <h3>3.2 Manajemen Tiket</h3>
+            <h4>User Features:</h4>
+            <ul>
+                <li>Create Ticket dengan kategori, prioritas, deskripsi, attachment</li>
+                <li>View Tickets (daftar tiket sendiri)</li>
+                <li>Update Ticket (hanya status "Open")</li>
+                <li>Delete Ticket (hanya status "Open")</li>
+                <li>View Details lengkap dengan attachment</li>
+            </ul>
+            <h4>Admin Features:</h4>
+            <ul>
+                <li>View All Tickets (semua tiket)</li>
+                <li>Update Ticket (status, prioritas, assign, dll)</li>
+                <li>Delete Ticket (semua tiket)</li>
+                <li>Assign Ticket ke admin lain</li>
+                <li>Ticket Statistics dashboard</li>
+            </ul>
+
+            <h3>3.3 Form SDLC</h3>
+            <p>Fitur khusus untuk kategori "Pengajuan pembuatan atau perubahan aplikasi sistem":</p>
+            <ul>
+                <li>Dynamic Form Loading saat kategori dipilih</li>
+                <li>Auto-Assign ke <code>admin@helpdesk.local</code></li>
+                <li>Data Storage di tabel <code>ticket_sdlc_data</code></li>
+                <li>View & Download: HTML dan PDF</li>
+            </ul>
+
+            <h3>3.4 Notifikasi</h3>
+            <ul>
+                <li>Real-time notifications</li>
+                <li>Notification bell dengan badge</li>
+                <li>Mark as read / Mark all as read</li>
+            </ul>
+
+            <h3>3.5 Email Notifications</h3>
+            <ul>
+                <li>New Ticket → Admin</li>
+                <li>Ticket Assigned → Admin</li>
+                <li>Ticket Updated → User</li>
+                <li>Password Reset → User</li>
+            </ul>
+
+            <h3>3.6 Reporting</h3>
+            <ul>
+                <li>PDF Export (semua tiket)</li>
+                <li>Excel/CSV Export</li>
+                <li>Description lengkap tanpa dipotong</li>
+            </ul>
+
+            <h3>3.7 User Management (Admin Only)</h3>
+            <ul>
+                <li>List Users</li>
+                <li>Create User</li>
+                <li>Update User</li>
+                <li>Delete User</li>
+            </ul>
+
+            <h3>3.8 Dashboard & Analytics</h3>
+            <ul>
+                <li>User Dashboard: statistik tiket sendiri</li>
+                <li>Admin Dashboard: statistik semua tiket, charts (pie & bar)</li>
+            </ul>
+
+            <h3>3.9 Panduan/Guideline</h3>
+            <ul>
+                <li>Interactive Guide dalam iframe</li>
+                <li>Bilingual (Indonesia/English)</li>
+                <li>Responsive untuk desktop dan mobile</li>
+                <li>Auto reset ke slide 1 saat dibuka</li>
+            </ul>
+        </section>
+
+        <section id="api-endpoints">
+            <h2>4. API Endpoints</h2>
+
+            <h3>4.1 Autentikasi</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Method</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>api.php?action=login</td><td>POST</td><td>Login user</td></tr>
+                    <tr><td>api.php?action=signup</td><td>POST</td><td>Registrasi user baru</td></tr>
+                    <tr><td>api.php?action=check_session</td><td>GET</td><td>Cek session aktif</td></tr>
+                    <tr><td>api.php?action=logout</td><td>POST</td><td>Logout user</td></tr>
+                    <tr><td>api.php?action=change_password</td><td>POST</td><td>Ubah password</td></tr>
+                    <tr><td>api.php?action=request_password_reset</td><td>POST</td><td>Request reset password</td></tr>
+                    <tr><td>api.php?action=reset_password</td><td>POST</td><td>Reset password dengan token</td></tr>
+                </tbody>
+            </table>
+
+            <h3>4.2 Tiket</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Method</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>api.php?action=create_ticket</td><td>POST</td><td>Buat tiket baru</td></tr>
+                    <tr><td>api.php?action=list_tickets</td><td>GET</td><td>Daftar tiket</td></tr>
+                    <tr><td>api.php?action=get_ticket_details</td><td>GET</td><td>Detail tiket</td></tr>
+                    <tr><td>api.php?action=update_ticket</td><td>POST</td><td>Update tiket (admin)</td></tr>
+                    <tr><td>api.php?action=ticket_stats</td><td>GET</td><td>Statistik tiket</td></tr>
+                </tbody>
+            </table>
+
+            <h3>4.3 SDLC</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Method</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>api.php?action=save_sdlc_data</td><td>POST</td><td>Simpan data form SDLC</td></tr>
+                    <tr><td>api.php?action=get_sdlc_data</td><td>GET</td><td>Ambil data SDLC</td></tr>
+                    <tr><td>api.php?action=download_sdlc_pdf</td><td>GET</td><td>Download SDLC PDF</td></tr>
+                </tbody>
+            </table>
+
+            <h3>4.4 Export</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Method</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>export.php?action=export_pdf</td><td>GET</td><td>Export PDF</td></tr>
+                    <tr><td>export.php?action=export_excel</td><td>GET</td><td>Export Excel/CSV</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="file-structure">
+            <h2>5. Struktur File</h2>
+            <pre><code>helpdesk/
+├── api.php                    # API endpoints utama
+├── app.js                     # JavaScript frontend
+├── config.php                 # Konfigurasi database
+├── export.php                 # Export PDF/Excel
+├── index.php                  # Halaman utama
+├── form_sdlc.html            # Form SDLC template
+│
+├── assets/
+│   ├── images/               # Logo & background
+│   └── Panduan.html          # Panduan interaktif
+│
+├── uploads/                   # Folder upload file
+│
+└── *.sql                     # Database schema files</code></pre>
+        </section>
+
+        <section id="business-process">
+            <h2>6. Proses Bisnis</h2>
+
+            <h3>6.1 Flow Create Ticket</h3>
+            <ol>
+                <li>User login ke sistem</li>
+                <li>User pilih "Create Ticket"</li>
+                <li>User isi form (kategori, deskripsi, prioritas, attachment)</li>
+                <li>Sistem generate nomor tiket otomatis (T00001, T00002, ...)</li>
+                <li>Sistem assign tiket (SDLC → auto ke admin@helpdesk.local)</li>
+                <li>Sistem simpan ke database</li>
+                <li>Sistem kirim email notifikasi ke admin</li>
+                <li>Sistem buat notifikasi untuk admin</li>
+            </ol>
+
+            <h3>6.2 Flow Password Reset</h3>
+            <ol>
+                <li>User klik "Forgot Password?"</li>
+                <li>User input email</li>
+                <li>Sistem generate token unik (64 karakter hex)</li>
+                <li>Sistem simpan token (expires 1 jam)</li>
+                <li>Sistem kirim email dengan link reset</li>
+                <li>User klik link di email</li>
+                <li>Sistem verifikasi token</li>
+                <li>User input password baru</li>
+                <li>Sistem update password</li>
+                <li>Sistem mark token sebagai used</li>
+            </ol>
+        </section>
+
+        <section id="configuration">
+            <h2>7. Konfigurasi</h2>
+
+            <h3>7.1 File config.php</h3>
+            <pre><code>// Database
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'helpdesk_db');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
+// Application
+define('SITE_URL', 'http://localhost/helpdesk_system');
+define('ADMIN_EMAILS', ['admin@helpdesk.local']);
+
+// Timezone
+date_default_timezone_set('Asia/Makassar');</code></pre>
+        </section>
+
+        <section id="setup">
+            <h2>8. Setup & Instalasi</h2>
+
+            <h3>8.1 Requirements</h3>
+            <ul>
+                <li>PHP 7.4+</li>
+                <li>MySQL 5.7+ atau MariaDB 10.2+</li>
+                <li>Apache/Nginx</li>
+                <li>PHP Extensions: PDO, PDO_MySQL, mbstring, GD, OpenSSL</li>
+            </ul>
+
+            <h3>8.2 Instalasi Database</h3>
+            <ol>
+                <li>Buat database di hosting/phpMyAdmin</li>
+                <li>Import <code>helpdesk_db.sql</code></li>
+                <li>Import <code>update_database_sdlc_v2.sql</code></li>
+                <li>Import <code>update_database_password_reset.sql</code></li>
+                <li>Verifikasi semua tabel sudah dibuat</li>
+            </ol>
+
+            <h3>8.3 Instalasi File</h3>
+            <ol>
+                <li>Upload semua file ke web server</li>
+                <li>Set permission folder <code>uploads/</code> ke 755 atau 777</li>
+                <li>Edit <code>config.php</code> (update credentials & SITE_URL)</li>
+                <li>Test koneksi database</li>
+            </ol>
+
+            <h3>8.4 Default Login</h3>
+            <div class="warning-box">
+                <strong>⚠️ PENTING:</strong> Ubah password default setelah login pertama!<br><br>
+                <strong>Username:</strong> <code>awan</code> atau <code>elky</code><br>
+                <strong>Password:</strong> <code>demo123</code>
+            </div>
+        </section>
+
+        <section id="security">
+            <h2>9. Security Best Practices</h2>
+
+            <h3>9.1 Password Security</h3>
+            <ul>
+                <li>Password minimum 6 karakter</li>
+                <li>Password di-hash menggunakan bcrypt</li>
+                <li>Reset token: 64 karakter random, expires 1 jam, single-use</li>
+            </ul>
+
+            <h3>9.2 Input Validation</h3>
+            <ul>
+                <li>Semua input di-sanitize menggunakan <code>clean_input()</code></li>
+                <li>SQL injection prevention: PDO prepared statements</li>
+                <li>XSS prevention: <code>htmlspecialchars()</code></li>
+            </ul>
+
+            <h3>9.3 Access Control</h3>
+            <ul>
+                <li>Role-based access control (user/admin)</li>
+                <li>User hanya bisa akses tiket sendiri</li>
+                <li>Admin bisa akses semua tiket</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>10. Troubleshooting</h2>
+
+            <h3>10.1 Database Connection Error</h3>
+            <div class="info-box">
+                <strong>Solusi:</strong><br>
+                1. Cek credentials di config.php<br>
+                2. Cek database sudah dibuat<br>
+                3. Cek user database punya permission<br>
+                4. Cek firewall/network
+            </div>
+
+            <h3>10.2 Email Tidak Terkirim</h3>
+            <div class="info-box">
+                <strong>Solusi:</strong><br>
+                1. Cek PHP mail() function enabled<br>
+                2. Cek SPF/DKIM/DMARC setup<br>
+                3. Cek spam folder<br>
+                4. Cek email server logs
+            </div>
+
+            <h3>10.3 File Upload Error</h3>
+            <div class="info-box">
+                <strong>Solusi:</strong><br>
+                1. Cek permission folder uploads/ (755 atau 777)<br>
+                2. Cek php.ini upload_max_filesize<br>
+                3. Cek disk space<br>
+                4. Cek file type allowed
+            </div>
+        </section>
+
+        <section id="maintenance">
+            <h2>11. Maintenance</h2>
+
+            <h3>11.1 Backup Database</h3>
+            <p>Lakukan backup database secara berkala:</p>
+            <ul>
+                <li>Daily backup untuk production</li>
+                <li>Weekly backup untuk development</li>
+            </ul>
+
+            <h3>11.2 Cleanup Old Data</h3>
+            <ul>
+                <li>Hapus token password reset yang sudah expired (lebih dari 1 hari)</li>
+                <li>Archive tiket yang sudah "Done" lebih dari 1 tahun (optional)</li>
+            </ul>
+
+            <h3>11.3 Update Password</h3>
+            <ul>
+                <li>Ubah password default admin setelah instalasi</li>
+                <li>Rekomendasi: ubah password setiap 3-6 bulan</li>
+            </ul>
+        </section>
+
+        <div class="footer">
+            <p><strong>IT Helpdesk System</strong> | Helpdesk System</p>
+            <p>Information Systems & Digital Infrastructure</p>
+            <p>Email: admin@helpdesk.local</p>
+            <p style="margin-top: 20px; color: #999;">Dokumentasi ini dibuat untuk Developer, System Administrator, dan IT Support Team</p>
+            <p style="color: #999;">Last Updated: November 2025</p>
+        </div>
+    </div>
+</body>
+</html>
+

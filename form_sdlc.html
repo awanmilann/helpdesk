@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULIR PERMINTAAN SISTEM / PERUBAHAN</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for better aesthetics */
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-section-title {
+            @apply text-xl font-bold border-b-2 pb-2 mb-4 text-gray-800;
+        }
+        .form-label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .input-text, .input-area {
+            @apply w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out shadow-sm;
+        }
+        .input-area {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10 lg:p-12">
+
+        <header class="text-center mb-10 border-b pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-2">FORMULIR PERMINTAAN SISTEM / PERUBAHAN</h1>
+            <h2 class="text-lg text-gray-600">Yayasan Perhutanan Bambu Sosial</h2>
+            <p class="mt-4 text-sm text-gray-500 italic">
+                Instruksi: Mohon lengkapi formulir ini sedetail mungkin.
+            </p>
+        </header>
+
+        <form id="requestForm" class="space-y-8">
+
+            <!-- BAGIAN A: INFORMASI UMUM -->
+            <div>
+                <h3 class="form-section-title text-blue-600">BAGIAN A: INFORMASI UMUM</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Judul Permintaan -->
+                    <div>
+                        <label for="judul" class="form-label">Judul Permintaan</label>
+                        <input type="text" id="judul" name="judul" class="input-text" placeholder="Contoh: Otomasi Proses Pengajuan Cuti" required>
+                    </div>
+
+                    <!-- Unit/Departemen Pemohon -->
+                    <div>
+                        <label for="unit" class="form-label">Unit/Departemen Pemohon</label>
+                        <input type="text" id="unit" name="unit" class="input-text" placeholder="Contoh: HRD" required>
+                    </div>
+
+                    <!-- Nama Pemohon -->
+                    <div>
+                        <label for="nama" class="form-label">Nama Pemohon</label>
+                        <input type="text" id="nama" name="nama" class="input-text" placeholder="Nama Lengkap Anda" required>
+                    </div>
+
+                    <!-- Jabatan -->
+                    <div>
+                        <label for="jabatan" class="form-label">Jabatan</label>
+                        <input type="text" id="jabatan" name="jabatan" class="input-text" placeholder="Contoh: Staf Administrasi" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="input-text" placeholder="nama@domain.com" required>
+                    </div>
+
+                    <!-- Tanggal Pengajuan -->
+                    <div>
+                        <label for="tanggal" class="form-label">Tanggal Pengajuan</label>
+                        <input type="date" id="tanggal" name="tanggal" class="input-text" value="" required>
+                    </div>
+
+                    <!-- Prioritas yang Diusulkan -->
+                    <div class="md:col-span-2">
+                        <label class="form-label">Prioritas yang Diusulkan</label>
+                        <div class="mt-2 space-y-2 p-3 bg-gray-50 rounded-lg">
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="prioritas" value="Tinggi" class="form-radio h-4 w-4 text-red-600" required>
+                                <span class="text-gray-900">Tinggi (Sangat berdampak pada efisiensi)</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="prioritas" value="Sedang" class="form-radio h-4 w-4 text-yellow-600">
+                                <span class="text-gray-900">Sedang (Berpengaruh signifikan, namun tidak kritis segera)</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="prioritas" value="Rendah" class="form-radio h-4 w-4 text-green-600">
+                                <span class="text-gray-900">Rendah (Perbaikan atau fitur tambahan)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN B: DESKRIPSI KEBUTUHAN -->
+            <div>
+                <h3 class="form-section-title text-green-600">BAGIAN B: DESKRIPSI KEBUTUHAN</h3>
+
+                <!-- 1. Latar Belakang & Situasi Saat Ini -->
+                <div class="mb-6">
+                    <label for="latarBelakang" class="form-label">1. Latar Belakang & Situasi Saat Ini</label>
+                    <p class="text-xs text-gray-500 mb-1">(Jelaskan proses bisnis yang berjalan saat ini, metode yang digunakan, dan mengapa proses tersebut sudah tidak memadai.)</p>
+                    <textarea id="latarBelakang" name="latarBelakang" rows="4" class="input-area" placeholder="Isi deskripsi situasi saat ini di sini, gunakan poin jika perlu" required></textarea>
+                </div>
+
+                <!-- 2. Pernyataan Masalah -->
+                <div class="mb-6">
+                    <label for="masalah" class="form-label">2. Pernyataan Masalah</label>
+                    <p class="text-xs text-gray-500 mb-1">(Sebutkan secara spesifik masalah inti yang timbul dari situasi saat ini.)</p>
+                    <textarea id="masalah" name="masalah" rows="2" class="input-area" placeholder="Isi pernyataan masalah di sini" required></textarea>
+                </div>
+
+                <!-- 3. Dampak Masalah Terhadap Organisasi -->
+                <div>
+                    <label class="form-label mb-2">3. Dampak Masalah Terhadap Organisasi</label>
+                    <p class="text-xs text-gray-500 mb-3">(Jelaskan konsekuensi dari masalah tersebut)</p>
+
+                    <div class="space-y-4">
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <label for="dampakWaktu" class="form-label text-red-700">Efisiensi Waktu</label>
+                            <textarea id="dampakWaktu" name="dampakWaktu" rows="2" class="input-area border-red-300" placeholder="Contoh: Rata-rata waktu proses mencapai X hari/jam" required></textarea>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <label for="dampakTransparansi" class="form-label text-yellow-700">Transparansi/Visibilitas</label>
+                            <textarea id="dampakTransparansi" name="dampakTransparansi" rows="2" class="input-area border-yellow-300" placeholder="Contoh: Karyawan tidak tahu status pengajuan mereka" required></textarea>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+                            <label for="dampakBiaya" class="form-label text-indigo-700">Kontrol Anggaran/Biaya</label>
+                            <textarea id="dampakBiaya" name="dampakBiaya" rows="2" class="input-area border-indigo-300" placeholder="Contoh: Risiko over-budget tinggi, rentan kesalahan" required></textarea>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                            <label for="dampakAkuntabilitas" class="form-label text-purple-700">Akuntabilitas</label>
+                            <textarea id="dampakAkuntabilitas" name="dampakAkuntabilitas" rows="2" class="input-area border-purple-300" placeholder="Contoh: Sulit melacak jejak audit atau penanggung jawab" required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN C: SOLUSI YANG DIUSULKAN -->
+            <div>
+                <h3 class="form-section-title text-purple-600">BAGIAN C: SOLUSI YANG DIUSULKAN</h3>
+
+                <!-- 1. Tujuan Utama -->
+                <div class="mb-6">
+                    <label for="tujuan" class="form-label">1. Tujuan Utama (SMART)</label>
+                    <p class="text-xs text-gray-500 mb-1">(Apa yang secara spesifik ingin dicapai dengan mengimplementasikan sistem/perubahan ini? Tentukan target yang terukur.)</p>
+                    <textarea id="tujuan" name="tujuan" rows="3" class="input-area" placeholder="Isi tujuan utama (SMART) di sini" required></textarea>
+                </div>
+
+                <!-- 2. Manfaat yang Diharapkan -->
+                <div class="mb-6">
+                    <label class="form-label mb-2">2. Manfaat yang Diharapkan</label>
+                    <p class="text-xs text-gray-500 mb-2">(Daftar manfaat yang akan dirasakan setelah sistem diimplementasikan.)</p>
+                    <input type="text" name="manfaat1" class="input-text mb-2" placeholder="Manfaat 1: [Isi di sini]" required>
+                    <input type="text" name="manfaat2" class="input-text mb-2" placeholder="Manfaat 2: [Isi di sini]" required>
+                    <input type="text" name="manfaat3" class="input-text" placeholder="Manfaat 3: [Isi di sini]">
+                </div>
+
+                <!-- 3. Pengguna Utama Sistem -->
+                <div class="mb-6">
+                    <label class="form-label mb-2">3. Pengguna Utama Sistem</label>
+                    <p class="text-xs text-gray-500 mb-2">(Siapa saja yang akan menggunakan sistem ini dan apa peran mereka?)</p>
+                    
+                    <div id="userRolesContainer" class="space-y-3">
+                        <!-- Default roles -->
+                        <div class="flex space-x-3">
+                            <input type="text" name="userRole" class="input-text flex-1" placeholder="Peran Pengguna (Contoh: Karyawan)" value="Karyawan">
+                            <input type="text" name="userFunction" class="input-text flex-1" placeholder="Fungsi Utama dalam Sistem (Contoh: Requester)" value="Requester/Pembuat Pengajuan">
+                        </div>
+                        <div class="flex space-x-3">
+                            <input type="text" name="userRole" class="input-text flex-1" placeholder="Peran Pengguna (Contoh: Kepala Departemen)" value="Kepala Departemen">
+                            <input type="text" name="userFunction" class="input-text flex-1" placeholder="Fungsi Utama dalam Sistem (Contoh: Approver L1)" value="Approver L1/Penyetuju Tingkat 1">
+                        </div>
+                    </div>
+                    <button type="button" onclick="addRoleField()" class="mt-3 text-sm text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Tambah Peran Pengguna
+                    </button>
+                </div>
+
+                <!-- 4. Fitur-fitur Kunci yang Dibutuhkan -->
+                <div>
+                    <label class="form-label mb-2">4. Fitur-fitur Kunci yang Dibutuhkan (High-Level)</label>
+                    <p class="text-xs text-gray-500 mb-2">(Daftar fungsionalitas utama yang harus dimiliki sistem.)</p>
+                    <div id="featureContainer" class="space-y-3">
+                        <input type="text" name="fitur1" class="input-text" placeholder="Fitur 1: [Isi di sini]" required>
+                        <input type="text" name="fitur2" class="input-text" placeholder="Fitur 2: [Isi di sini]" required>
+                        <input type="text" name="fitur3" class="input-text" placeholder="Fitur 3: [Isi di sini]">
+                        <input type="text" name="fitur4" class="input-text" placeholder="Fitur 4: [Isi di sini]">
+                    </div>
+                    <button type="button" onclick="addFeatureField()" class="mt-3 text-sm text-blue-600 hover:text-blue-800 font-semibold flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Tambah Fitur
+                    </button>
+                </div>
+            </div>
+
+            <!-- PERSETUJUAN PENGAJUAN -->
+            <div class="pt-8 border-t-2 border-dashed border-gray-300">
+                <h3 class="form-section-title text-gray-600">PERSETUJUAN PENGAJUAN (Digital)</h3>
+                <p class="text-sm text-gray-500 mb-4">Kami memahami bahwa pengajuan ini akan dievaluasi oleh Tim IT.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="pemohonTtd" class="form-label">Nama Pemohon (Konfirmasi)</label>
+                        <input type="text" id="pemohonTtd" name="pemohonTtd" class="input-text" placeholder="Tanda Tangan Digital/Nama" required>
+                    </div>
+                    <div>
+                        <label for="manajerTtd" class="form-label">Nama Kepala/Manajer Departemen Pemohon</label>
+                        <input type="text" id="manajerTtd" name="manajerTtd" class="input-text" placeholder="Tanda Tangan Digital/Nama" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center pt-8">
+                <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105">
+                    Kirim Formulir Permintaan
+                </button>
+            </div>
+        </form>
+
+        <!-- Modals and Results Display -->
+        <div id="resultModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 space-y-4">
+                <h4 class="text-2xl font-bold text-green-600 border-b pb-2">Pengajuan Berhasil Dikirim!</h4>
+                <p class="text-gray-700">Terima kasih. Pengajuan Anda telah berhasil dicatat dan akan dievaluasi oleh Tim IT.</p>
+                <div id="formDataDisplay" class="bg-gray-100 p-4 rounded-lg text-sm max-h-60 overflow-y-auto">
+                    <!-- Form data will be inserted here -->
+                </div>
+                <button onclick="closeModal()" class="w-full py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition">
+                    Tutup
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set today's date automatically
+            document.getElementById('tanggal').value = new Date().toISOString().split('T')[0];
+        });
+        
+        // Function to add a new User Role input field pair
+        function addRoleField() {
+            const container = document.getElementById('userRolesContainer');
+            const newRoleDiv = document.createElement('div');
+            newRoleDiv.className = 'flex space-x-3';
+            newRoleDiv.innerHTML = `
+                <input type="text" name="userRole" class="input-text flex-1" placeholder="Peran Pengguna" required>
+                <input type="text" name="userFunction" class="input-text flex-1" placeholder="Fungsi Utama dalam Sistem" required>
+            `;
+            container.appendChild(newRoleDiv);
+        }
+
+        // Function to add a new Feature input field
+        function addFeatureField() {
+            const container = document.getElementById('featureContainer');
+            const newFeatureInput = document.createElement('input');
+            newFeatureInput.type = 'text';
+            newFeatureInput.name = 'fitur[]'; // Use array name for easier collection
+            newFeatureInput.className = 'input-text';
+            newFeatureInput.placeholder = 'Fitur baru: [Isi di sini]';
+            newFeatureInput.required = true;
+            container.appendChild(newFeatureInput);
+        }
+
+        // Handle Form Submission
+        document.getElementById('requestForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const dataDisplay = document.getElementById('formDataDisplay');
+            let formDataHtml = '';
+            
+            // Collect standard input data
+            const standardInputs = [
+                'judul', 'unit', 'nama', 'jabatan', 'email', 'tanggal', 'prioritas',
+                'latarBelakang', 'masalah', 'dampakWaktu', 'dampakTransparansi', 
+                'dampakBiaya', 'dampakAkuntabilitas', 'tujuan', 'manfaat1', 
+                'manfaat2', 'manfaat3', 'pemohonTtd', 'manajerTtd'
+            ];
+
+            standardInputs.forEach(name => {
+                let element = form.elements[name];
+                let value = '';
+
+                if (element.length > 1 && element[0].type === 'radio') {
+                    // Handle radio buttons (e.g., prioritas)
+                    const checkedRadio = Array.from(element).find(radio => radio.checked);
+                    value = checkedRadio ? checkedRadio.value : 'Tidak Diisi';
+                } else if (element) {
+                    // Handle single input/textarea
+                    value = element.value;
+                }
+                
+                // Capitalize first letter of name for display
+                const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+                
+                // Add to HTML display
+                formDataHtml += `<p class="mb-1"><strong>${displayName.replace(/([A-Z])/g, ' $1').trim()}:</strong> ${value}</p>`;
+            });
+
+            // Collect User Roles (Peran Pengguna & Fungsi Utama)
+            const userRoles = [];
+            const roleInputs = Array.from(form.elements['userRole']);
+            const functionInputs = Array.from(form.elements['userFunction']);
+            
+            roleInputs.forEach((role, index) => {
+                if (role.value.trim() && functionInputs[index].value.trim()) {
+                    userRoles.push(`- ${role.value.trim()} (${functionInputs[index].value.trim()})`);
+                }
+            });
+            formDataHtml += `<p class="mt-4 mb-1"><strong>Pengguna Utama Sistem:</strong></p>`;
+            if (userRoles.length > 0) {
+                userRoles.forEach(role => {
+                    formDataHtml += `<p class="ml-4">${role}</p>`;
+                });
+            } else {
+                formDataHtml += `<p class="ml-4">Tidak ada peran yang diisi.</p>`;
+            }
+
+            // Collect Features (Fitur-fitur Kunci)
+            const features = [];
+            // Assuming features might be named 'fitur1', 'fitur2', etc., or the dynamic 'fitur[]'
+            const featureInputs = Array.from(form.querySelectorAll('input[name^="fitur"]'));
+
+            featureInputs.forEach(input => {
+                if (input.value.trim()) {
+                    features.push(`- ${input.value.trim()}`);
+                }
+            });
+            
+            formDataHtml += `<p class="mt-4 mb-1"><strong>Fitur-fitur Kunci:</strong></p>`;
+            if (features.length > 0) {
+                features.forEach(feature => {
+                    formDataHtml += `<p class="ml-4">${feature}</p>`;
+                });
+            } else {
+                formDataHtml += `<p class="ml-4">Tidak ada fitur yang diisi.</p>`;
+            }
+
+
+            // Display the data in the modal
+            dataDisplay.innerHTML = formDataHtml;
+            
+            // Show the modal
+            document.getElementById('resultModal').style.display = 'flex';
+            
+            // Optionally clear the form after successful submission
+            form.reset();
+            
+            // Reset dynamic fields (roles and features) if needed, but keeping the default ones is cleaner
+        });
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('resultModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
