@@ -9,11 +9,15 @@ ini_set('session.cookie_lifetime', 0);
 ini_set('session.cookie_httponly', true);
 ini_set('session.use_strict_mode', true);
 ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 0);
+ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 1 : 0);
 ini_set('session.cookie_samesite', 'Lax');
 ini_set('session.gc_maxlifetime', 3600); // 1 hour
 ini_set('session.cookie_path', '/');
 ini_set('session.cookie_domain', '');
+
+// Vercel: sessions only work in /tmp (serverless read-only filesystem)
+$savePath = getenv('SESSION_SAVE_PATH') ?: '/tmp';
+ini_set('session.save_path', $savePath);
 
 // Start session hanya sekali
 if (session_status() === PHP_SESSION_NONE) {
@@ -39,7 +43,9 @@ date_default_timezone_set('Asia/Makassar');
 // --- TAMBAHKAN DI SINI ---
 try {
     $db = Database::getInstance()->getConnection();
-    $db->exec("SET time_zone = '+08:00'");
+    if ($db) {
+        $db->exec("SET time_zone = '+08:00'");
+    }
 } catch (Exception $e) {
     // Boleh diabaikan
 }
@@ -70,8 +76,12 @@ class Database {
             
             $this->conn = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            die("Database connection failed: " . $e->getMessage());
+            $this->conn = null;
         }
+    }
+    
+    public function isConnected() {
+        return $this->conn !== null;
     }
     
     public static function getInstance() {
@@ -93,7 +103,11 @@ class Database {
 
 // Helper function untuk mendapatkan koneksi database
 function getDB() {
-    return Database::getInstance()->getConnection();
+    $conn = Database::getInstance()->getConnection();
+    if ($conn === null) {
+        throw new Exception("Database connection failed - check your DB_HOST, DB_NAME, DB_USER, DB_PASS environment variables.");
+    }
+    return $conn;
 }
 
 // Helper function untuk sanitasi input
