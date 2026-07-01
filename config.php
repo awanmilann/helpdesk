@@ -20,17 +20,19 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database configuration - Hostinger
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'helpdesk_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Database configuration
+// Supports environment variables for Vercel + PlanetScale deployment
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('DB_NAME') ?: 'helpdesk_db');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
 define('DB_CHARSET', 'utf8mb4');
 
 // Application configuration
 // Update SITE_URL to your production URL when deploying
-define('SITE_URL', 'http://localhost/helpdesk_system');
-define('ADMIN_EMAILS', ['admin@helpdesk.local']);
+define('SITE_URL', getenv('SITE_URL') ?: 'http://localhost/helpdesk_system');
+$adminEmails = getenv('ADMIN_EMAILS');
+define('ADMIN_EMAILS', $adminEmails ? explode(',', $adminEmails) : ['admin@helpdesk.local']);
 
 // Timezone
 date_default_timezone_set('Asia/Makassar');
@@ -60,6 +62,11 @@ class Database {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ];
+            
+            $sslCa = getenv('MYSQL_ATTR_SSL_CA');
+            if ($sslCa) {
+                $options[PDO::MYSQL_ATTR_SSL_CA] = $sslCa;
+            }
             
             $this->conn = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {

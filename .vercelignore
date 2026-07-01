@@ -1,0 +1,14 @@
+*.zip
+*.sql
+DOCUMENTATION Helpdesk.html
+assets/Panduan.html
+phpinfo.php
+hash_test.php
+test_*
+check_*
+fix_*
+reset_*
+clean_*
+complete_fix.php
+enable_edit_delete.php
+setup_complete.php
